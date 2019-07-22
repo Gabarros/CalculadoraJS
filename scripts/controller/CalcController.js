@@ -9,12 +9,10 @@ class CalcController {
         this._displayCalcEl = document.querySelector("#display");
         this._dateEl = document.querySelector("#data");
         this._timeEl = document.querySelector("#hora");
-
         this._currentDate;
-
-
         this.initButtonsEvents();
         this.initialize();
+        this.initKeyboard();
 
     }
 
@@ -37,6 +35,10 @@ class CalcController {
             year: "numeric"
         });
         this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
+    }
+
+    initKeyboard(){
+        document.addEventListener();
     }
 
     addEventListenerAll(element, events, fn) {
@@ -160,6 +162,8 @@ class CalcController {
     addDot(){
 
         let lastOperation = this.getLastOperation();
+
+        if(typeof lastOperation === 'string' && lastOperation && lastOperation.split('').indexOf('.') > -1) return;
         if(this.isOperator(lastOperation) || !lastOperation){
             this.pushOperation('0.');
         } else{
